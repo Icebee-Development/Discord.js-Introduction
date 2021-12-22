@@ -60,3 +60,37 @@ client.on("messageCreate", (message) => {
 Save your code and restart your bot. To do so, use `CTRL+C` in the command line, and re-run `node index.js`. Yes, there are better ways to reload the code, as you will see later in this book.
 
 You can test your new command by saying `foo` in a channel you share with the bot. You can also confirm that `ping` still returns `pong`!
+
+## Using a Prefix
+You might have noticed that a lot of bots respond to commands that have a prefix. This might be an exclamation mark (!), a dot (.), a question mark(?), or another character but with the introduction of slash commands it is heavily advised against using `/`. But this is useful for two things.
+
+First, if you don't use a unique prefix and have more than one bot on a server, both will respond to the same commands. On developer servers, typing `!help` leads to a flood of replies and private messages which is something to avoid.
+
+Second, in the example above we respond when the message *starts with* the 3 characters, `foo`. In its current state, this means the following sentence will trigger the bot's response: **fool, you have not heard the last of me!**. Yes, that's an odd example, but it's still valid - say this on your bot's channel and he will respond.
+
+To work around this, we'll be using prefix, which we will store in a variable. This way we get the prefix as well as the ability to change it for all commands in one place. Here's an example code that does this:
+
+```js
+// Set the prefix
+const prefix = "!";
+client.on("messageCreate", (message) => {
+  // Exit and stop if it's not there
+  if (!message.content.startsWith(prefix)) return;
+
+  // The back ticks are Template Literals introduced in Javascript in ES6 or ES2015, as an replacement for String Concatenation Read them up here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+  if (message.content.startsWith(`${prefix}ping`)) {
+    message.channel.send("pong!");
+  } else
+
+  if (message.content.startsWith(`${prefix}foo`)) {
+    message.channel.send("bar!");
+  }
+});
+```
+
+The changes to the code are still simple. Let's go through them:
+- `const prefix = "!";` defines the prefix as the exclamation mark. You can change it to something else, of course.
+- The line `if (!msg.content.startsWith(prefix)) return;` is a small bit of optimization which reads: "If the message does not start with my prefix, stop what you're doing". This prevents the rest of the function from running, making your bot faster and more responsive.
+- The commands have changed so use this prefix, where `startsWith\(`${prefix}ping`)\would only be triggered when the message starts with!ping\`\.`
+
+The second point is just as important as having a single `message` event handler. Let's say the bot receives a hundred messages every minute (not much of an exaggeration on popular bots). If the function does not break off at the beginning, you are processing these hundred messages in each of your command conditions. If, on the other hand, you break off when the prefix is not present, you are saving all these processor cycles for better things. If commands are 1% of your messages, you are saving 99% processing power...
