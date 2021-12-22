@@ -15,8 +15,8 @@ client.once("ready", () => {
 
 // Checks if message starts with "hi" if true then replys with "hello"
 client.on("messageCreate", (message) => {
-  if(message.content.startsWith("hi")) {
-    message.channel.send("hello");
+  if(message.content.startsWith("ping")) {
+    message.channel.send("pong!");
   }
 });
 
@@ -39,3 +39,24 @@ This is, specifically, an event in *discord.js* but it's similar to how other AP
 Why is this important? Well, if you intend to use your bot on a large server, or if you want it to be on multiple servers, this becomes a large number of events triggering at every moment. I don't want to go into too much optimization talk, but for a single point: **use a single event function for each event**.
 
 Discord.js contains a large number of events that can trigger under certain situations. For instance, the `ready` event triggers when the bot comes online. The `guildMemberAdd` event triggers when a new user joins a server shared with the bot. For a full list of events, see [Events in the documentation](https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-applicationCommandCreate). We will come back to some of those later in this chapter.
+
+## Adding a second command
+One of the first useful things you might want to learn is how to add a second command to your bot. While there are *better* ways than what I'm about to show you, for the time being this will be enough.
+
+{% hint style="info" %} From now on I will omit the code that requires and initiates the discord.js and concentrate on specific parts of the code. {% endhint %}
+
+```js
+client.on("messageCreate", (message) => {
+  if (message.content.startsWith("ping")) {
+    message.channel.send("pong!");
+  } else
+
+  if (message.content.startsWith("foo")) {
+    message.channel.send("bar!");
+  }
+});
+```
+
+Save your code and restart your bot. To do so, use `CTRL+C` in the command line, and re-run `node index.js`. Yes, there are better ways to reload the code, as you will see later in this book.
+
+You can test your new command by saying `foo` in a channel you share with the bot. You can also confirm that `ping` still returns `pong`!
