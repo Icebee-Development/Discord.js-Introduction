@@ -1,0 +1,2 @@
+# Discord.js introduction
+This chapter assumes you already have basic knowledge of javascript. If not then go to [Codecademy](https://www.codecademy.com/learn/introduction-to-javascript) and take a javascript course.
