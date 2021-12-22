@@ -43,7 +43,7 @@ Discord.js contains a large number of events that can trigger under certain situ
 ## Adding a second command
 One of the first useful things you might want to learn is how to add a second command to your bot. While there are *better* ways than what I'm about to show you, for the time being this will be enough.
 
-{% hint style="info" %} From now on I will omit the code that requires and initiates the discord.js and concentrate on specific parts of the code. {% endhint %}
+From now on I will omit the code that requires and initiates the discord.js and concentrate on specific parts of the code.
 
 ```js
 client.on("messageCreate", (message) => {
