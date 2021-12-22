@@ -1,4 +1,4 @@
-# Discord.js introduction
+# Discord.js introduction First Bot
 This chapter assumes you already have basic knowledge of javascript. If not then go to [Codecademy](https://www.codecademy.com/learn/introduction-to-javascript) and take a javascript course.
 
 In this chapter We'll guide you through the development of a simple bot with some useful commands. We'll start with the basic example:
