@@ -141,4 +141,4 @@ client.on("messageCreate", (message) => {
 client.login("yourToken");
 ```
 
-It's not good practice to have tokens and auth stuff in your code, it really should be in a separate file! <!--Head on over to Adding a [Config File]() and let's get this done.-->
+It's not good practice to have tokens and auth stuff in your code, it really should be in a separate file! Head on over to [Adding a Config File](adding-a-config-file.md) and let's get this done.
