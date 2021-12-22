@@ -94,3 +94,51 @@ The changes to the code are still simple. Let's go through them:
 - The commands have changed so use this prefix, where startsWith(\`\${prefix}ping\`\) would only be triggered when the message starts with `!ping`.
 
 The second point is just as important as having a single `message` event handler. Let's say the bot receives a hundred messages every minute (not much of an exaggeration on popular bots). If the function does not break off at the beginning, you are processing these hundred messages in each of your command conditions. If, on the other hand, you break off when the prefix is not present, you are saving all these processor cycles for better things. If commands are 1% of your messages, you are saving 99% processing power...
+
+## Preventing Botception
+We're pretty much done with the bot introduction. There's one last thing that I want to talk about: bots answering each other. Let's pretend for a moment that you have two bots on your server and each can respond to the same prefixed command, `!help`. But when that command is called, it replies: `!help commands: Type !help followed by one of the following to see details: ping , foo`.
+
+Now, one person types `!help` in a channel, and both bots respond. But, they will also see the **other** bot saying `!help commands: [...]`, will see that as a request for help, answer each other... in an infinite loop. To prevent that from happening, we can add a second condition inside our `message` event handler, right below the one that checks for the prefix:
+
+```js
+const prefix = "!";
+client.on("messageCreate", (message) => {
+  // our new check:
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  // [rest of the code]
+});
+```
+
+That condition contains an **OR ( || )** operator, which reads as the following:
+
+If there is no prefix or the author of this message is a bot, stop processing. This includes this bot, itself.
+
+And now, we have a bot that only responds to 2 commands and does not waste any power trying to figure out anything else. Is this a complete basic bot? Sure! So let's end this page here and we'll take a look at some new concept next.
+
+The full bot code would now be:
+
+```js
+const { Client, Intents } = require("discord.js");
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
+});
+
+// Set the prefix
+let prefix = "!";
+client.on("messageCreate", (message) => {
+  // Exit and stop if the prefix is not there or if user is a bot
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  if (message.content.startsWith(`${prefix}ping`)) {
+    message.channel.send("pong!");
+  } else
+
+  if (message.content.startsWith(`${prefix}foo`)) {
+    message.channel.send("bar!");
+  }
+});
+
+client.login("yourToken");
+```
+
+It's not good practice to have tokens and auth stuff in your code, it really should be in a separate file! <!--Head on over to Adding a [Config File]() and let's get this done.-->
