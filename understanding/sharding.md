@@ -206,7 +206,7 @@ const getServer = async (guildID) => {
 }
 ```
 
-`broadcastEval()` will only return basic js objects, and will not return Discord.js structures such as Collections, Guild objects, Member object, and the likes. You will need to interact directly with the API or build these structures yourself after getting a response back from your `broadcastEval()`.
+`broadcastEval()` will only return basic javascript objects, and will not return Discord.js structures such as Collections, Guild objects, Member object, and the likes. You will need to interact directly with the API or build these structures yourself after getting a response back from your `broadcastEval()`.
 
 Example of a Guild object returned by [`broadcastEval`](sharding.md#broadcasteval):
 

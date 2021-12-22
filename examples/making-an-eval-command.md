@@ -2,11 +2,11 @@
 
 ## What is eval exactly?
 
-In js \(and node\), `eval()` is a function that evaluates any string _as js code_ and actually executes it. Meaning, if I `eval(2+2)`, eval will return `4`. If I eval `client.guilds.cache.size`, it'll return however many guilds the bot is currently on. And if I eval `client.guilds.cache.map(g=>g.name).join('\n')` then it will return a list of guild names separated by a line return. Cool, right?
+In javascript \(and node\), `eval()` is a function that evaluates any string _as javascript code_ and actually executes it. Meaning, if I `eval(2+2)`, eval will return `4`. If I eval `client.guilds.cache.size`, it'll return however many guilds the bot is currently on. And if I eval `client.guilds.cache.map(g=>g.name).join('\n')` then it will return a list of guild names separated by a line return. Cool, right?
 
 ## But eval is dangerous
 
-I'll say this in a way that's probably dead simple to understand: _Giving someone access to_ `eval()` _is literally like sitting them **at your computer**, with **full admin access**, and then **stepping out of the room**._ `eval()` in browser js is trivial and not dangerous - you're running in your own browser, anything you fuck up is going to be on your own PC, not the web servers.
+I'll say this in a way that's probably dead simple to understand: _Giving someone access to_ `eval()` _is literally like sitting them **at your computer**, with **full admin access**, and then **stepping out of the room**._ `eval()` in browser javascript is trivial and not dangerous - you're running in your own browser, anything you fuck up is going to be on your own PC, not the web servers.
 
 But `eval()` in **node** is really, really dangerous and powerful. Because it can run anything **you** run as a bot, and it can also run code you're not **expecting** to run, if someone else has access to it. **Node.js** has access to your **hard drive**. The whole thing. Every bit of it. To understand what this means, look at the following command: `rm -rf / --no-preserve-root` . Do you know what this command does? **It deletes your entire server's hard drives**. I mean, it only works on Linux, but most VPS systems and most hosting providers are on UNIX-based systems.
 

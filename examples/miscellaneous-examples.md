@@ -97,7 +97,7 @@ setTimeout(() => {
 
 ### Mention Prefix
 
-Regex or Regular Expressions are used to match character combinations in strings. Read more about them [here](https://developer.mozilla.org/en-US/docs/Web/js/Guide/Regular_Expressions). You can create and test them [here](https://regex101.com/?flavor=js)
+Regex or Regular Expressions are used to match character combinations in strings. Read more about them [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions). You can create and test them [here](https://regex101.com/?flavor=js)
 
 Requiring a little bit of regex, this will catch when a message starts with the bot being mentioned.
 
