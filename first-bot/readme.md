@@ -13,7 +13,7 @@ client.once("ready", () => {
   console.log("I am ready");
 });
 
-// Checks if message starts with "hi" if true then replys with "hello"
+// Checks if message starts with "ping" if true then replys with "pong!"
 client.on("messageCreate", (message) => {
   if(message.content.startsWith("ping")) {
     message.channel.send("pong!");
