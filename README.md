@@ -1,4 +1,4 @@
-<img src="http://icebee.xyz/icebee.gif">
+<center><img src="http://icebee.xyz/icebee.gif"></img></center>
 # Welcome
 
 ## Introduction
