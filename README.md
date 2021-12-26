@@ -1,4 +1,4 @@
-<p align="center"><img src="http://icebee.xyz/icebee.gif"></p>
+<p align="center"><a href="https://icebee.xyz"><img src="http://icebee.xyz/icebee.gif"></a></p>
 
 # Welcome
 
