@@ -1,4 +1,4 @@
-<a href="http://icebee.xyz/icebee.gif"></a>
+<img src="http://icebee.xyz/icebee.gif">
 # Welcome
 
 ## Introduction
